@@ -1,26 +1,122 @@
 
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>boq7t</title>
+<title>The Kingdom of Saudi Arabia</title>
 <style>
+* { box-sizing: border-box; }
+
 body {
+  margin: 0;
   background: black;
-  color: red;
+  color: #00c853;
+  font-family: Arial, sans-serif;
   text-align: center;
-  font-family: Arial;
-  padding-top: 100px;
 }
-h1 {
-  font-size: 40px;
-  text-shadow: 0 0 20px red;
+
+#introScreen {
+  position: fixed;
+  inset: 0;
+  background: black;
 }
+
+#intro {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#heading {
+  position: absolute;
+  top: 25px;
+  width: 100%;
+  padding: 0 12px;
+  font-size: clamp(20px, 4vw, 38px);
+  font-weight: bold;
+  color: #00c853;
+  text-shadow: 0 0 12px black;
+}
+
+#middleText {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  color: #00ff66;
+  font-size: clamp(26px, 5vw, 55px);
+  font-weight: bold;
+  text-shadow: 0 0 12px black, 0 0 22px green;
+}
+
+#startButton {
+  display: none;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #008c38;
+  color: white;
+  border: 0;
+  border-radius: 12px;
+  padding: 16px 25px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#content {
+  display: none;
+  min-height: 100vh;
+  padding: 100px 15px;
+}
+
+h1 { color: #00c853; }
 </style>
 </head>
 <body>
-<h1>boq7t</h1>
-<p>Hi i'm boq7t</p>
+
+<div id="introScreen">
+  <video id="intro" playsinline preload="auto">
+    <source src="8321861569_tk.mp4" type="video/mp4">
+  </video>
+
+  <div id="heading">The Kingdom of Saudi Arabia</div>
+  <div id="middleText">boq7t is here</div>
+
+  <button id="startButton">اضغط للدخول 🔊</button>
+</div>
+
+<div id="content">
+  <h1>The Kingdom of Saudi Arabia</h1>
+  <h2>boq7t is here</h2>
+</div>
+
+<script>
+const video = document.getElementById("intro");
+const button = document.getElementById("startButton");
+const screen = document.getElementById("introScreen");
+const content = document.getElementById("content");
+
+async function startVideo() {
+  video.muted = false;
+  video.volume = 1;
+  try {
+    await video.play();
+    button.style.display = "none";
+  } catch (error) {
+    button.style.display = "block";
+  }
+}
+
+button.addEventListener("click", startVideo);
+
+video.addEventListener("ended", () => {
+  screen.style.display = "none";
+  content.style.display = "block";
+});
+
+startVideo();
+</script>
 </body>
 </html>
