@@ -41,9 +41,8 @@ body {
 
 #middleText {
   position: absolute;
-  top: 50%;
+  bottom: 15px;
   width: 100%;
-  transform: translateY(-50%);
   color: #00ff66;
   font-size: clamp(26px, 5vw, 55px);
   font-weight: bold;
@@ -105,7 +104,8 @@ async function startVideo() {
     await video.play();
     button.style.display = "none";
   } catch (error) {
-    button.style.display = "block";
+   video.muted = true;
+video.play();
   }
 }
 
